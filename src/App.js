@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import LoginForm from "./forms/LoginForm";
+import SignupForm from "./forms/SignupForm";
+
 
 function App() {
-  return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-  );
+    const [showLoginForm, setShowLoginForm] = useState(false);
+    const [showSignupForm, setShowSignupForm] = useState(false);
+
+    const handleLoginClick = () => {
+        setShowLoginForm(true);
+        setShowSignupForm(false);
+    };
+
+    const handleSignupClick = () => {
+        setShowSignupForm(true);
+        setShowLoginForm(false);
+    };
+
+    return (
+        <div className="App bg-amber-800">
+            <h1>Welcome to my App</h1>
+            <button onClick={handleLoginClick}>Login</button>
+            <button onClick={handleSignupClick}>Signup</button>
+            {showLoginForm && <LoginForm/>}
+            {showSignupForm && <SignupForm/>}
+        </div>
+    );
 }
 
 export default App;
